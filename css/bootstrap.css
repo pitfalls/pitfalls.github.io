@@ -98,9 +98,11 @@ hr {
      -moz-box-sizing: content-box;
           box-sizing: content-box;
 }
-pre {
+
+/*pre {
   overflow: auto;
 }
+*/
 code,
 kbd,
 pre,
