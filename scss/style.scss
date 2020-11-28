@@ -1,0 +1,15 @@
+/**
+ * Master SCSS file
+ * Imports all other SCSS files and compiles them into one.
+ * @link http://sass-lang.com/guide
+ */
+
+ /*!
+  * Comment that is not compressed by Grunt (due to the !)
+  */
+
+@import '_variables.scss';
+
+@import '_mixins.scss';
+
+@import '_main.scss';

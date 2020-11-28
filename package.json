@@ -1,0 +1,42 @@
+{
+  "name": "advent-calendar",
+  "version": "1.0.0",
+  "description": "An Advent Calendar being built over the 25 day period leading up to Christmas.",
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jekkilekki/advent-calendar.git"
+  },
+  "keywords": [
+    "advent",
+    "Christmas",
+    "countdown",
+    "calendar"
+  ],
+  "author": "Aaron Snowberger",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jekkilekki/advent-calendar/issues"
+  },
+  "homepage": "https://github.com/jekkilekki/advent-calendar#readme",
+  "babel": {
+    "presets": [
+      "latest",
+      "react"
+    ]
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-preset-latest": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "grunt": "^1.0.1",
+    "grunt-autoprefixer": "^3.0.4",
+    "grunt-babel": "^6.0.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0"
+  },
+  "dependencies": {
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1"
+  }
+}
