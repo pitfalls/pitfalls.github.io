@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sonsie+One|Quicksand|Nunito|Varela+Round|Averia+Serif+Libre" />
   <!-- Load local Stylesheets -->
   <link rel="stylesheet" href="style.css" />
-
+  <link rel="stylesheet" href="popup.css" />
 </head>
 
 <body>
@@ -24,6 +24,7 @@
   </span>
   <hgroup class="page-title">
     <h1>Advent Calendar</h1>
+	<p>Advent Advent ein Lichtlein brennt, und somit ist der erste Dezember und das erste türchen wird somit geöffnet :)</p>
   </hgroup>
 </nav>
 </header>
@@ -34,7 +35,7 @@
 
 <div id="carousel">
   <a id="day-1"></a>
-  <a id="day-2"></a>
+<!--  <a id="day-2"></a>
   <a id="day-3"></a>
   <a id="day-4"></a>
   <a id="day-5"></a>
@@ -56,11 +57,11 @@
   <a id="day-21"></a>
   <a id="day-22"></a>
   <a id="day-23"></a>
-  <a id="day-24"></a>
+  <a id="day-24"></a>-->
 <div id="container">
 <div id="inner">
 <section id="day1" class="day active">
-  <div class="present" onClick="window.open('http://www.google.com','_newtab');" style="cursor: pointer;">
+  <div class="present" onClick="window.open('https://www.youtube.com/watch?v=0Z32dsxu_No&ab_channel=TopiTheCorgi','_newtab');" style="cursor: pointer;">
     <span class="bow"></span>
     <span class="ribbon"></span>
     <h1 class="present-title">1<span>st</span></h1>
@@ -71,6 +72,7 @@
   <div class="present">
     <span class="bow"></span>
     <span class="ribbon"></span>
+	<span class="popuptext" id="myPopup">Popup text...</span>
     <h1 class="present-title">2<span>nd</span></h1>
   </div>
 </section>
@@ -258,10 +260,19 @@
 </div><!-- #carousel -->
 </main>
 
+
+<script>
+// When the user clicks on div, open the popup
+function myFunction() {
+  var popup = document.getElementById("myPopup");
+  popup.classList.toggle("show");
+}
+</script>
+
 <footer>
   <ul id="index" class="day-list">
     <li><a href="#day-1"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>1</span></a></li>
-    <li><a href="#day-2"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>2</span></a></li>
+<!--    <li><a href="#day-2"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>2</span></a></li>
     <li><a href="#day-3"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>3</span></a></li>
     <li><a href="#day-4"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>4</span></a></li>
     <li><a href="#day-5"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>5</span></a></li>
@@ -283,7 +294,7 @@
     <li><a href="#day-21"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>21</span></a></li>
     <li><a href="#day-22"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>22</span></a></li>
     <li><a href="#day-23"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>23</span></a></li>
-    <li><a href="#day-24"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>24</span></a></li>
+    <li><a href="#day-24"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>24</span></a></li>-->
   </ul>
 </footer>
 <!-- ========================= END COPEPEN CODE ========================= -->
