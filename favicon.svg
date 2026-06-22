@@ -1,0 +1,9 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="400" fill="#0D1F35"/>
+  <polygon points="200,48 340,124 340,276 200,352 60,276 60,124" fill="none" stroke="#2E86C1" stroke-width="6" opacity="0.5"/>
+  <polygon points="200,72 316,136 316,264 200,328 84,264 84,136" fill="#1A3A5C" opacity="0.6"/>
+  <text x="200" y="245" font-family="Inter, sans-serif" font-weight="700" font-size="130" fill="#FFFFFF" text-anchor="middle" letter-spacing="-6">AF</text>
+  <circle cx="200" cy="310" r="8" fill="#00D4AA"/>
+  <circle cx="172" cy="310" r="5" fill="#2E86C1" opacity="0.6"/>
+  <circle cx="228" cy="310" r="5" fill="#2E86C1" opacity="0.6"/>
+</svg>
