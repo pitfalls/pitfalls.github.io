@@ -1,313 +1,1118 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Advent Calendar</title>
-  <!-- Load external Stylesheets -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sonsie+One|Quicksand|Nunito|Varela+Round|Averia+Serif+Libre" />
-  <!-- Load local Stylesheets -->
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="popup.css" />
-</head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alexander Frewein — Senior Java Backend Developer</title>
+  <meta name="description" content="Senior Java Backend Developer & Team Lead with 7+ years in security-critical software. Based in Graz, open to relocation to the Netherlands.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0D1F35;
+      --navy-mid: #1A3A5C;
+      --blue: #2E86C1;
+      --blue-light: #5DADE2;
+      --accent: #00D4AA;
+      --bg: #F4F7FB;
+      --surface: #FFFFFF;
+      --text: #0F1923;
+      --text-muted: #5C7A96;
+      --border: #DDE6EF;
+      --mono: 'JetBrains Mono', monospace;
+    }
 
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(13,31,53,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(46,134,193,0.2);
+      padding: 0 40px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--accent);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-weight: 400;
+      transition: color 0.2s;
+      letter-spacing: 0.3px;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      padding: 100px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(46,134,193,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(0,212,170,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 48px;
+      width: 100%;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .hero-tag {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero-name {
+      font-size: clamp(42px, 5vw, 64px);
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.05;
+      letter-spacing: -1.5px;
+      margin-bottom: 8px;
+    }
+
+    .hero-name span {
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .hero-degree {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--blue-light);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero-role {
+      font-size: 18px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.4;
+      margin-bottom: 32px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+
+    .badge {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.3px;
+    }
+
+    .badge-blue {
+      background: rgba(46,134,193,0.2);
+      border: 1px solid rgba(46,134,193,0.4);
+      color: var(--blue-light);
+    }
+
+    .badge-green {
+      background: rgba(0,212,170,0.15);
+      border: 1px solid rgba(0,212,170,0.35);
+      color: var(--accent);
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.1s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--blue-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.75);
+      padding: 12px 28px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 400;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+      display: inline-block;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 24px 20px;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+
+    .stat-card:hover { border-color: rgba(46,134,193,0.4); }
+
+    .stat-card .stat-num {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 6px;
+      font-family: var(--mono);
+    }
+
+    .stat-card .stat-label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      line-height: 1.3;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 96px 0; }
+
+    section:nth-child(even) { background: var(--surface); }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--blue);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 3vw, 38px);
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.8px;
+      margin-bottom: 48px;
+      line-height: 1.1;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .about-text p {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+
+    .about-text p:last-child { margin-bottom: 0; }
+
+    .about-highlight {
+      color: var(--navy-mid);
+      font-weight: 500;
+    }
+
+    .relocation-card {
+      background: var(--navy);
+      border-radius: 12px;
+      padding: 28px 24px;
+      border: 1px solid rgba(46,134,193,0.25);
+      position: sticky;
+      top: 80px;
+    }
+
+    .relocation-card h4 {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .relocation-card p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .contact-links { display: flex; flex-direction: column; gap: 10px; }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-link:hover { color: var(--accent); }
+
+    .contact-link .icon {
+      width: 28px;
+      height: 28px;
+      background: rgba(46,134,193,0.2);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    /* ── EXPERIENCE ── */
+    .timeline { position: relative; }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--blue), transparent);
+    }
+
+    .tl-entry {
+      padding-left: 36px;
+      margin-bottom: 56px;
+      position: relative;
+    }
+
+    .tl-entry:last-child { margin-bottom: 0; }
+
+    .tl-dot {
+      position: absolute;
+      left: -5px;
+      top: 8px;
+      width: 12px;
+      height: 12px;
+      background: var(--blue);
+      border-radius: 50%;
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 0 3px rgba(46,134,193,0.2);
+    }
+
+    .tl-date {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--blue);
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .tl-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: -0.3px;
+      margin-bottom: 4px;
+    }
+
+    .tl-company {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .tl-roles { display: flex; flex-direction: column; gap: 14px; margin-bottom: 16px; }
+
+    .tl-role {
+      background: var(--bg);
+      border-left: 3px solid var(--border);
+      border-radius: 0 6px 6px 0;
+      padding: 12px 16px;
+      transition: border-color 0.2s;
+    }
+
+    .tl-role:hover { border-left-color: var(--blue); }
+
+    .tl-role-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy-mid);
+      margin-bottom: 4px;
+    }
+
+    .tl-role-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .tl-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 14px;
+    }
+
+    .tl-tag {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--navy-mid);
+      background: #EBF3FA;
+      border-radius: 4px;
+      padding: 3px 8px;
+      letter-spacing: 0.3px;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px 24px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    section:nth-child(even) .skill-card { background: var(--bg); }
+
+    .skill-card:hover {
+      border-color: var(--blue);
+      box-shadow: 0 4px 24px rgba(46,134,193,0.1);
+    }
+
+    .skill-card h3 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .skill-items { display: flex; flex-direction: column; gap: 10px; }
+
+    .skill-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .skill-item .name { color: var(--text); font-weight: 400; }
+
+    .skill-item .level {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      font-family: var(--mono);
+    }
+
+    .tech-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .tech-pill {
+      font-size: 12px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      background: #EBF3FA;
+      color: var(--navy-mid);
+      border: 1px solid #D0E4F5;
+      font-weight: 400;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .tech-pill:hover {
+      background: var(--blue);
+      color: white;
+      border-color: var(--blue);
+    }
+
+    /* ── EDUCATION ── */
+    .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    .edu-card {
+      background: var(--navy);
+      border-radius: 10px;
+      padding: 24px;
+      border: 1px solid rgba(46,134,193,0.2);
+      transition: border-color 0.2s;
+    }
+
+    .edu-card:hover { border-color: rgba(46,134,193,0.5); }
+
+    .edu-year {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--blue-light);
+      margin-bottom: 8px;
+    }
+
+    .edu-degree {
+      font-size: 15px;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    .edu-school {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .thesis-list { display: flex; flex-direction: column; gap: 14px; margin-top: 40px; }
+
+    .thesis-item {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 16px 20px;
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .thesis-type {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding-top: 2px;
+    }
+
+    .thesis-title {
+      font-size: 13px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.5;
+    }
+
+    /* ── PROJECTS ── */
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 36px;
+      display: grid;
+      grid-template-columns: 1fr 240px;
+      gap: 48px;
+      align-items: center;
+      transition: box-shadow 0.2s;
+    }
+
+    .project-card:hover {
+      box-shadow: 0 8px 40px rgba(46,134,193,0.1);
+    }
+
+    .project-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .project-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+
+    .project-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .project-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .impact-box {
+      background: var(--navy);
+      border-radius: 10px;
+      padding: 24px;
+      text-align: center;
+      border: 1px solid rgba(46,134,193,0.25);
+    }
+
+    .impact-num {
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--accent);
+      font-family: var(--mono);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .impact-label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      line-height: 1.4;
+    }
+
+    /* ── LANGUAGES & CERTS ── */
+    .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+
+    .meta-card {
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 28px;
+      border: 1px solid var(--border);
+    }
+
+    section:nth-child(even) .meta-card {
+      background: var(--surface);
+    }
+
+    .meta-card h3 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 20px;
+    }
+
+    .lang-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .lang-row:last-child { border-bottom: none; }
+
+    .lang-row .lang { font-size: 14px; font-weight: 500; color: var(--navy); }
+    .lang-row .level { font-size: 12px; color: var(--text-muted); }
+
+    .cert-item {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .cert-item:last-child { border-bottom: none; }
+
+    .cert-item strong { color: var(--navy); font-weight: 500; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      padding: 48px 0;
+      text-align: center;
+      border-top: 1px solid rgba(46,134,193,0.15);
+    }
+
+    footer p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+    }
+
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 20px;
+    }
+
+    footer .footer-links a {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer .footer-links a:hover { color: var(--accent); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero-stats { grid-template-columns: repeat(4, 1fr); }
+      .about-grid { grid-template-columns: 1fr; }
+      .relocation-card { position: static; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .edu-grid { grid-template-columns: 1fr; }
+      .project-card { grid-template-columns: 1fr; }
+      .meta-grid { grid-template-columns: 1fr; }
+      nav { padding: 0 20px; }
+      .nav-links { gap: 20px; }
+      .container { padding: 0 24px; }
+    }
+
+    @media (max-width: 600px) {
+      .hero-stats { grid-template-columns: 1fr 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
 <body>
 
-  <!-- Create simple React container -->
-  <div id="react-container"></div>
-
-
-<!-- ========================= BEGIN COPEPEN CODE ========================= -->
-<header>
-<nav class="main-menu">
-  <span class="logo">
-    <img src="">
-  </span>
-  <hgroup class="page-title">
-    <h1>Advent Calendar</h1>
-<p>MIt diesem letzen Video will ich mich bedanken, dass ihr den Kalender so gut verfolgt habt. Ich wünsche euch und euren Familien Frohe Weihnachten</p>
-  </hgroup>
-</nav>
-</header>
-
-
-<main>
-
-
-<div id="carousel">
-  <a id="day-1"></a>
-  <a id="day-2"></a>
-  <a id="day-3"></a>
-<a id="day-4"></a>
- <a id="day-5"></a>
-     <a id="day-6"></a>
- <a id="day-7"></a>
-<a id="day-8"></a>
-  <a id="day-9"></a>
-  <a id="day-10"></a>
- <a id="day-11"></a>
-  <a id="day-12"></a>
-  <a id="day-13"></a>
-  <a id="day-14"></a>
- <a id="day-15"></a>
-   <a id="day-16"></a>
- <a id="day-17"></a>
-  <a id="day-18"></a>
-  <a id="day-19"></a>
-   <a id="day-20"></a>
-  <a id="day-21"></a>
-  <a id="day-22"></a>
- <a id="day-23"></a>
- <a id="day-24"></a>
-<div id="container">
-<div id="inner">
-
-<!-- Corgi -->
-<section id="day1" class="day active">
-  <div class="present" onClick="window.open('https://www.youtube.com/watch?v=0Z32dsxu_No&ab_channel=TopiTheCorgi','_newtab');" style="cursor: pointer;">
-    <span class="bow"></span>
-    <span class="ribbon"></span>
-    <h1 class="present-title">1<span>st</span></h1>
-  </div>
-</section>
-<!-- Mariah Carie <p>Sollte eigentlich jeder kennen</p>-->
-<section id="day2" class="day active">
-  <div class="present" onClick="window.open('https://www.youtube.com/watch?v=yXQViqx6GMY&list=PLNpoMbFozlPEBBfS90cpmFVx50qAXgQdf&ab_channel=MariahCareyVEVO','_newtab');" style="cursor: pointer;">
-    <span class="bow"></span>
-    <span class="ribbon"></span>
-    <h1 class="present-title">2<span>nd</span></h1>
-  </div>
-</section>
-
-<!-- Graz Promotion <p>Kleines Promotion Video wie es hätte sein können :(</p>-->
-<section id="day3" class="day active">
-  <div class="present" onClick="window.open('https://www.youtube.com/watch?v=PHtGfNDc9oM&ab_channel=StefanMichalowsky','_newtab');" style="cursor: pointer;">
-    <span class="bow"></span>
-    <span class="ribbon"></span>
-    <h1 class="present-title">3<span>rd</span></h1>
-  </div>
-</section>
-
-<!-- Coca Cola <p>Wer kennts noch?</p>-->
-<section id="day4" class="day active">
-  <div class="present" onClick="window.open('https://www.youtube.com/watch?v=MKUj96WMEr4&ab_channel=kultwerbung','_newtab');" style="cursor: pointer;">
-    <span class="bow"></span>
-    <span class="ribbon"></span>
-	  <a href="#day-1"> </a>
-    <h1 class="present-title">4<span>th</span></h1>
-  </div>
-</section>
-
-<!--Kevin allein Zuhause <p>Na wer wird Ihn sich auch heuer wieder anschauen ;)</p>-->
-<section id="day5" class="day active">
-  <div class="present" onClick="window.open('https://www.youtube.com/watch?v=2TZhvVinTJA&ab_channel=Mocko6659','_newtab');" style="cursor: pointer;">
-    <span class="bow"></span>
-    <span class="ribbon"></span>
-    <h1 class="present-title">5<span>th</span></h1>
-  </div>
-</section>
-
-<!-- Ö3 Callboy  <p>Ich denke hat jeder schon mal gehört im Radio</p>-->
-<section id="day6" class="day active">
-  <div class="present" onClick="window.open('https://www.youtube.com/watch?v=f5WibFXXqNA&ab_channel=TheHuginandMugin','_newtab');" style="cursor: pointer;">
-    <span class="bow"></span>
-    <span class="ribbon"></span>
-    <h1 class="present-title">6<span>th</span></h1>
-  </div>
-</section>
-
-<!-- Lily the Snowman  <p>Ich mag diesen lieben Kurzfilm</p>-->
-<section id="day7" class="day active">
-  <div class="present" onClick="window.open('https://www.youtube.com/watch?v=sOyJ3FExfSE&ab_channel=LionheartProduction','_newtab');" style="cursor: pointer;">
-    <span class="bow"></span>
-    <span class="ribbon"></span>
-    <h1 class="present-title">7<span>th</span></h1>
-  </div>
-</section>
-
-<!-- Mundl  <p>A suppa szene aus Wien von einer alten Fernsehserie</p>-->
-<section id="day8" class="day active">
-<div class="present" onClick="window.open('https://www.youtube.com/watch?v=RR3bDVj_Bxc&ab_channel=xxXMeroStyleXxx','_newtab');" style="cursor: pointer;">
-    <span class="bow"></span>
-    <span class="ribbon"></span>
-    <h1 class="present-title">8<span>th</span></h1>
-  </div>
-</section>
-<!-- Erste bank  <p>Eine sehr liebe Werbung aus Österreich</p>-->
-<section id="day9" class="day active">
-  <div class="present" onClick="window.open('https://www.youtube.com/watch?v=kMSDD619o7o&ab_channel=AdsofBrands','_newtab');" style="cursor: pointer;">
-    <span class="bow"></span>
-    <span class="ribbon"></span>
-    <h1 class="present-title">9<span>th</span></h1>
-  </div>
-</section>
-
-<!-- Top Zehn <p>Ich hoffe keiner von euch hatte eines dieser Spielzeuge</p>-->
-<section id="day10" class="day active">
-  <div class="present" onClick="window.open('https://www.youtube.com/watch?v=WXJc3h--y4E&ab_channel=TopZehn','_newtab');" style="cursor: pointer;">
-    <span class="bow"></span>
-    <span class="ribbon"></span>
-    <h1 class="present-title">10<span>th</span></h1>
-  </div>
-</section>
-<!-- HIshe Alternate Ending Lord of the ring <p>Ich finde dieses Ende hätte die Filmreihe deutlich gekürzt :D</p>-->
-<section id="day11" class="day active">
-  <div class="present" onClick="window.open('https://www.youtube.com/watch?v=1yqVD0swvWU&ab_channel=HowItShouldHaveEnded','_newtab');" style="cursor: pointer;">
-    <span class="bow"></span>
-    <span class="ribbon"></span>
-    <h1 class="present-title">11<span>th</span></h1>
-  </div>
-</section>
-
-<!-- Chunky Malmut  <p>Ich finde sie sehr süß</p>-->
-<section id="day12" class="day active">
-  <div class="present" onClick="window.open('https://www.youtube.com/watch?v=nZ7RlaSwvHs&ab_channel=PAWSTUBE','_newtab');" style="cursor: pointer;">
-    <span class="bow"></span>
-    <span class="ribbon"></span>
-    <h1 class="present-title">12<span>th</span></h1>
-  </div>
-</section>
-<!--Malaga <p>Eine schöne Lichtershow aus Malaga</p>-->
-<section id="day13" class="day active">
-  <div class="present" onClick="window.open('https://www.youtube.com/watch?v=hMvRl8d0CQg&feature=youtu.be&ab_channel=javi98diaz','_newtab');" style="cursor: pointer;">
-    <span class="bow"></span>
-    <span class="ribbon"></span>
-    <h1 class="present-title">13<span>th</span></h1>
-  </div>
-</section>
-
-<section id="day14" class="day active">
-  <div class="present" onClick="window.open('https://www.youtube.com/watch?v=WjqiU5FgsYc&ab_channel=ThePresent','_newtab');" style="cursor: pointer;">
-    <span class="bow"></span>
-    <span class="ribbon"></span>
-    <h1 class="present-title">14<span>th</span></h1>
-  </div>
-</section>
-<!-- Lichtershow  <p>Eine wunderschöne Lichtershow, Vollbildmodus anschauen!!!!!</p>-->
-<section id="day15" class="day active">
-  <div class="present" onClick="window.open('https://www.youtube.com/watch?v=3-jgRxzLlhY&ab_channel=TomBetGeorge','_newtab');" style="cursor: pointer;">
-    <span class="bow"></span>
-    <span class="ribbon"></span>
-    <h1 class="present-title">15<span>th</span></h1>
-  </div>
-</section>
-
-<!-- The World's Most Magical Christmas Towns  <p>wunderschöne Weihnachts Orte</p>-->
-<section id="day16" class="day active">
-  <div class="present" onClick="window.open('https://www.youtube.com/watch?v=5qu_aj1CjfE&feature=youtu.be&ab_channel=TripsToDiscover','_newtab');" style="cursor: pointer;">
-    <span class="bow"></span>
-    <span class="ribbon"></span>
-    <h1 class="present-title">16<span>th</span></h1>
-  </div>
-</section>
-
-<!-- Edeka <p>Es ist die Zeit um heimzukommen</p>-->
-<section id="day17" class="day active">
-  <div class="present" onClick="window.open('https://www.youtube.com/watch?v=V6-0kYhqoRo&ab_channel=EDEKA','_newtab');" style="cursor: pointer;">
-    <span class="bow"></span>
-    <span class="ribbon"></span>
-    <h1 class="present-title">17<span>th</span></h1>
-  </div>
-</section>
-
-<!-- Feliz Navidad <p>Ein Wunschlied von Sabrina</p>-->
-<section id="day18" class="day active">
-  <div class="present" onClick="window.open('https://www.youtube.com/watch?v=qK7P53Z7wBY&feature=youtu.be','_newtab');" style="cursor: pointer;">
-    <span class="bow"></span>
-    <span class="ribbon"></span>
-    <h1 class="present-title">18<span>th</span></h1>
-  </div>
-</section>
-
-<!-- The Gift - Animated Short Film 2018 - Manor <p>Ein lieber Animationsfilm</p>-->
-<section id="day19" class="day active">
-  <div class="present" onClick="window.open('https://www.youtube.com/watch?v=A6QJk4YJahI&ab_channel=CreativeMart','_newtab');" style="cursor: pointer;">
-    <span class="bow"></span>
-    <span class="ribbon"></span>
-    <h1 class="present-title">19<span>th</span></h1>
-  </div>
-</section>
-
-<!-- Heavyweight WINNER  <p>Christmas light show</p>-->
-<section id="day20" class="day active">
-  <div class="present" onClick="window.open('https://www.youtube.com/watch?v=0eKW-Ij-BLs&ab_channel=ABC','_newtab');" style="cursor: pointer;">
-    <span class="bow"></span>
-    <span class="ribbon"></span>
-    <h1 class="present-title">20<span>th</span></h1>
-  </div>
-</section>
-<!-- Last christmas <p>Ein wahrer Klassiker</p>-->
-<section id="day21" class="day active">
-  <div class="present" onClick="window.open('https://www.youtube.com/watch?v=E8gmARGvPlI&ab_channel=WhamVEVO','_newtab');" style="cursor: pointer;">
-    <span class="bow"></span>
-    <span class="ribbon"></span>
-    <h1 class="present-title">21<span>st</span></h1>
-  </div>
-</section>
-<!-- Klaus <p>Wer ihn noch nicht gesehen hat soll das schnellstens nachholen</p>-->
-<section id="day22" class="day active">
-  <div class="present" onClick="window.open('https://www.youtube.com/watch?v=d5AO68Fah1U&ab_channel=Multi-Fangirl','_newtab');" style="cursor: pointer;">
-    <span class="bow"></span>
-    <span class="ribbon"></span>
-    <h1 class="present-title">22<span>nd</span></h1>
-  </div>
-</section>
-<!-- Single Bells <p>Ein Klassiker aus Österreich</p>-->
-<section id="day23" class="day active">
-  <div class="present" onClick="window.open('https://www.youtube.com/watch?v=-6F2WvPQqBg&ab_channel=Komplett-MediaVerlag','_newtab');" style="cursor: pointer;">
-    <span class="bow"></span>
-    <span class="ribbon"></span>
-    <h1 class="present-title">23<span>rd</span></h1>
-  </div>
-</section>
-<!-- Carol of the bells <p>MIt diesem letzen Video will ich mich bedanken, dass ihr den Kalender so gut verfolgt habt. Ich wünsche euch und euren Familien Frohe Weihnachten</p>-->
-<section id="day24" class="day active">
-  <div class="present" onClick="window.open('https://www.youtube.com/watch?v=k-W2Bkz_Rno&ab_channel=TheTabernacleChoiratTempleSquare','_newtab');" style="cursor: pointer;">
-    <span class="bow"></span>
-    <span class="ribbon"></span>
-    <h1 class="present-title">24<span>th</span></h1>
-  </div>
-</section>
-
-
-</div><!-- #inner -->
-</div><!-- #container -->
-</div><!-- #carousel -->
-</main>
-
-
-
-
-<footer>
-  <ul id="index" class="day-list">
-    <li><a href="#day-1"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>1</span></a></li>
-    <li><a href="#day-2"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>2</span></a></li>
-	<li><a href="#day-3"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>3</span></a></li>
-     <li><a href="#day-4"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>4</span></a></li>
-    <li><a href="#day-5"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>5</span></a></li>
-    <li><a href="#day-6"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>6</span></a></li>
-    <li><a href="#day-7"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>7</span></a></li>
-    <li><a href="#day-8"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>8</span></a></li>
-    <li><a href="#day-9"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>9</span></a></li>
-    <li><a href="#day-10"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>10</span></a></li>
-    <li><a href="#day-11"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>11</span></a></li>
-    <li><a href="#day-12"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>12</span></a></li>
-   <li><a href="#day-13"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>13</span></a></li>
-    <li><a href="#day-14"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>14</span></a></li>
-    <li><a href="#day-15"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>15</span></a></li>
-    <li><a href="#day-16"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>16</span></a></li>
-    <li><a href="#day-17"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>17</span></a></li>
-    <li><a href="#day-18"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>18</span></a></li>
-    <li><a href="#day-19"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>19</span></a></li>
-    <li><a href="#day-20"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>20</span></a></li>
- <li><a href="#day-21"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>21</span></a></li>
-    <li><a href="#day-22"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>22</span></a></li>
-   <li><a href="#day-23"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>23</span></a></li>
-       <li><a href="#day-24"><i class="fa fa-3x fa-gift" aria-hidden="true"></i><span>24</span></a></li>
+<!-- ── NAV ── -->
+<nav>
+  <span class="nav-brand">af://</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-tag">Senior Developer · Team Lead</div>
+        <h1 class="hero-name">Alexander<br><span>Frewein</span></h1>
+        <div class="hero-degree">BSc · MSc (TU Graz)</div>
+        <p class="hero-role">Senior Java Backend Developer &amp; Team Lead<br>with 7+ years in security-critical software</p>
+        <div class="hero-badges">
+          <span class="badge badge-blue">Java / Spring Boot</span>
+          <span class="badge badge-blue">eIDAS / ETSI</span>
+          <span class="badge badge-blue">PKI / Cryptography</span>
+          <span class="badge badge-green">Open to Netherlands</span>
+        </div>
+        <div class="hero-cta">
+          <a href="mailto:alex5.frewein@gmail.com" class="btn-primary">Get in Touch</a>
+          <a href="#experience" class="btn-outline">View Experience</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-stats">
+          <div class="stat-card">
+            <div class="stat-num">7+</div>
+            <div class="stat-label">Years in software development</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">4</div>
+            <div class="stat-label">Years in senior &amp; lead roles</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">4</div>
+            <div class="stat-label">Person team currently leading</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">−60%</div>
+            <div class="stat-label">Ticket creation time via AI tooling</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">About</div>
+    <h2 class="section-title">Background</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I am a <span class="about-highlight">Senior Java Backend Developer and Team Lead</span> with over seven years of professional experience, four of them in senior and lead positions. My career began with cryptographic, hardware-near programming at <span class="about-highlight">NXP Semiconductors R&amp;D</span>, where I worked within Hardware Security Module environments at chip level — from low-level C/C++ through Java-side integration.
+        </p>
+        <p>
+          Since 2022 I have been at <span class="about-highlight">XiTrust Secure Technologies</span>, building and owning backend systems for MOXIS — an eIDAS/ETSI-compliant electronic signature platform processing several thousand signatures per month. I implemented signature handlers for qualified and simple electronic signatures, including integrations with two trust centres (Swisscom and A-Trust).
+        </p>
+        <p>
+          Beyond the core backend work, I have developed a genuine interest in <span class="about-highlight">applied AI integration</span>: I designed and built an in-house AI agent system on Anthropic MCP that the engineering team uses daily, cutting structured ticket creation time by roughly 60%.
+        </p>
+        <p>
+          I am ready to relocate to the Netherlands for the right opportunity — a Dutch financial-services or technology organisation where deep backend expertise and applied AI can make a real difference.
+        </p>
+      </div>
+      <div class="relocation-card" id="contact">
+        <h4>Contact</h4>
+        <p>Based in Graz, Austria — EU citizen, no work permit required for the Netherlands.</p>
+        <div class="contact-links">
+          <a href="mailto:alex5.frewein@gmail.com" class="contact-link">
+            <span class="icon">✉</span>
+            alex5.frewein@gmail.com
+          </a>
+          <a href="tel:+436601445013" class="contact-link">
+            <span class="icon">✆</span>
+            +43 660 144 50 13
+          </a>
+          <a href="https://linkedin.com/in/alexander-frewein" class="contact-link" target="_blank" rel="noopener">
+            <span class="icon">in</span>
+            linkedin.com/in/alexander-frewein
+          </a>
+          <a href="https://github.com/pitfalls" class="contact-link" target="_blank" rel="noopener">
+            <span class="icon">⌥</span>
+            github.com/pitfalls
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERIENCE ── -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label">Experience</div>
+    <h2 class="section-title">Career</h2>
+    <div class="timeline">
+
+      <div class="tl-entry">
+        <div class="tl-dot"></div>
+        <div class="tl-date">2022 – present</div>
+        <div class="tl-title">XiTrust Secure Technologies GmbH</div>
+        <div class="tl-company">MOXIS | European e-Signatures · Graz, Austria</div>
+        <div class="tl-roles">
+          <div class="tl-role">
+            <div class="tl-role-title">Technical Project Lead, Business Cloud <span style="font-weight:400;color:#9BB0C4;font-size:11px;">since 02/2026</span></div>
+            <div class="tl-role-desc">Co-own the MOXIS Business Cloud together with the DevOps Team Lead — steering releases, deployments and configuration at the DEV/DevOps interface.</div>
+          </div>
+          <div class="tl-role">
+            <div class="tl-role-title">Team Lead Backend Engineering <span style="font-weight:400;color:#9BB0C4;font-size:11px;">since 05/2025</span></div>
+            <div class="tl-role-desc">Lead a four-person mixed team (backend &amp; frontend) — 1:1s, code reviews and mentoring; close collaboration with product management on sprint planning.</div>
+          </div>
+          <div class="tl-role">
+            <div class="tl-role-title">Senior Java Backend Developer <span style="font-weight:400;color:#9BB0C4;font-size:11px;">since 2022</span></div>
+            <div class="tl-role-desc">Backend development for MOXIS, an eIDAS/ETSI-compliant signature platform. Implemented and maintained signature handlers for qualified and simple electronic signatures, including integrations with two trust centres (Swisscom, A-Trust). Built an in-house AI agent system (Claude Cowork) to streamline internal engineering processes.</div>
+          </div>
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag">Java</span>
+          <span class="tl-tag">Spring Boot</span>
+          <span class="tl-tag">eIDAS / ETSI</span>
+          <span class="tl-tag">Qualified Signature</span>
+          <span class="tl-tag">Trust Centre</span>
+          <span class="tl-tag">Team Lead</span>
+          <span class="tl-tag">Mentoring</span>
+          <span class="tl-tag">Release Management</span>
+          <span class="tl-tag">AI / MCP</span>
+        </div>
+      </div>
+
+      <div class="tl-entry">
+        <div class="tl-dot"></div>
+        <div class="tl-date">2018 – 2022</div>
+        <div class="tl-title">NXP Semiconductors Austria GmbH &amp; Co KG</div>
+        <div class="tl-company">R&amp;D · Gratkorn, Austria</div>
+        <div class="tl-roles">
+          <div class="tl-role">
+            <div class="tl-role-title">Software Developer R&amp;D (working student)</div>
+            <div class="tl-role-desc">Developed cryptographic software in an HSM (Hardware Security Module) environment close to chip level — from low-level C/C++ through to Java-side integration. Independently designed and implemented core components, partly mentored by senior engineers. For the Bachelor's thesis, implemented the full RFC standard for X.509 certificates directly into the HSM.</div>
+          </div>
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag">C</span>
+          <span class="tl-tag">C++</span>
+          <span class="tl-tag">Java</span>
+          <span class="tl-tag">X.509</span>
+          <span class="tl-tag">PKI</span>
+          <span class="tl-tag">HSM</span>
+          <span class="tl-tag">Cryptography</span>
+          <span class="tl-tag">SVN / Maven</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ── -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">Skills</div>
+    <h2 class="section-title">Technical Expertise</h2>
+    <div class="skills-grid">
+
+      <div class="skill-card">
+        <h3>Core Languages</h3>
+        <div class="skill-items">
+          <div class="skill-item"><span class="name">Java / Spring Boot</span><span class="level">Expert</span></div>
+          <div class="skill-item"><span class="name">C / C++</span><span class="level">Advanced</span></div>
+          <div class="skill-item"><span class="name">SQL</span><span class="level">Proficient</span></div>
+          <div class="skill-item"><span class="name">Python</span><span class="level">Proficient</span></div>
+          <div class="skill-item"><span class="name">JavaScript</span><span class="level">Proficient</span></div>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h3>Security &amp; Identity</h3>
+        <div class="tech-cloud">
+          <span class="tech-pill">eIDAS</span>
+          <span class="tech-pill">ETSI</span>
+          <span class="tech-pill">PKI / X.509</span>
+          <span class="tech-pill">OAuth2 / OIDC</span>
+          <span class="tech-pill">Keycloak</span>
+          <span class="tech-pill">HSM</span>
+          <span class="tech-pill">Cryptography</span>
+          <span class="tech-pill">Trust Centre</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h3>Infrastructure &amp; DevOps</h3>
+        <div class="tech-cloud">
+          <span class="tech-pill">Docker</span>
+          <span class="tech-pill">HAProxy</span>
+          <span class="tech-pill">REST APIs</span>
+          <span class="tech-pill">Git</span>
+          <span class="tech-pill">Maven</span>
+          <span class="tech-pill">Jira</span>
+          <span class="tech-pill">Confluence</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h3>AI &amp; Emerging Tech</h3>
+        <div class="tech-cloud">
+          <span class="tech-pill">MCP</span>
+          <span class="tech-pill">Claude API</span>
+          <span class="tech-pill">GenAI / LLMs</span>
+          <span class="tech-pill">Electron</span>
+          <span class="tech-pill">AI Workflow Design</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h3>Leadership</h3>
+        <div class="tech-cloud">
+          <span class="tech-pill">Team Lead</span>
+          <span class="tech-pill">1:1 Coaching</span>
+          <span class="tech-pill">Code Review</span>
+          <span class="tech-pill">Mentoring</span>
+          <span class="tech-pill">Sprint Planning</span>
+          <span class="tech-pill">Release Management</span>
+          <span class="tech-pill">Technical Project Lead</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h3>Languages</h3>
+        <div class="skill-items">
+          <div class="skill-item"><span class="name">German</span><span class="level">Native</span></div>
+          <div class="skill-item"><span class="name">English</span><span class="level">Fluent (C1)</span></div>
+          <div class="skill-item"><span class="name">Dutch</span><span class="level">Willing to learn</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── EDUCATION ── -->
+<section id="education">
+  <div class="container" style="background: var(--navy); border-radius: 16px; padding: 56px 48px;">
+    <div class="section-label" style="color: var(--accent);">Education</div>
+    <h2 class="section-title" style="color: white; margin-bottom: 32px;">Academic Background</h2>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-year">2020 – 12/2022</div>
+        <div class="edu-degree">MSc (Dipl.-Ing.) Software Engineering &amp; Business</div>
+        <div class="edu-school">Graz University of Technology (TU Graz)</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year">2014 – 04/2020</div>
+        <div class="edu-degree">BSc Software Engineering &amp; Business</div>
+        <div class="edu-school">Graz University of Technology (TU Graz)</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year">2007 – 2013</div>
+        <div class="edu-degree">Secondary School Diploma (Matura)</div>
+        <div class="edu-school">Bundeshandelsakademie Judenburg</div>
+      </div>
+    </div>
+
+    <div class="thesis-list">
+      <div class="thesis-item">
+        <div class="thesis-type">Bachelor's Thesis</div>
+        <div class="thesis-title">Analysing and Testing of a System for Certification</div>
+      </div>
+      <div class="thesis-item">
+        <div class="thesis-type">Master's Project</div>
+        <div class="thesis-title">Reimplementation of a Library for Certificate Handling used in a Hardware Security Module</div>
+      </div>
+      <div class="thesis-item">
+        <div class="thesis-type">Master's Thesis</div>
+        <div class="thesis-title">Design and Implementation of Cryptographic Functions of a Hardware Security Module on Smart Cards</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROJECTS ── -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label">Projects</div>
+    <h2 class="section-title">Highlights</h2>
+    <div class="project-card">
+      <div class="project-left">
+        <div class="project-label">Own Initiative · 2026 – present</div>
+        <div class="project-title">Claude Cowork</div>
+        <div class="project-sub">In-house AI Agent System · XiTrust Secure Technologies GmbH</div>
+        <p class="project-desc">
+          A self-built modular AI agent system running on Anthropic MCP — in daily use across the engineering team. The system includes a Jira ticket validator, a ticket analyst, a Teams transcript analyser, and a meeting-notes agent, complemented by "Jira Reporter" — an Electron desktop app with an AI chat interface for creating and editing tickets.
+        </p>
+        <div class="tl-tags">
+          <span class="tl-tag">MCP</span>
+          <span class="tl-tag">Claude API</span>
+          <span class="tl-tag">Electron</span>
+          <span class="tl-tag">Jira API</span>
+          <span class="tl-tag">JavaScript</span>
+          <span class="tl-tag">GenAI Workflow</span>
+        </div>
+      </div>
+      <div class="impact-box">
+        <div class="impact-num">−60%</div>
+        <div class="impact-label">Ticket creation time<br>(10–15 min → under 5 min)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CERTIFICATIONS ── -->
+<section>
+  <div class="container">
+    <div class="section-label">Credentials</div>
+    <h2 class="section-title">Certifications &amp; Other</h2>
+    <div class="meta-grid">
+      <div class="meta-card">
+        <h3>Certifications</h3>
+        <div class="cert-item"><strong>Anthropic</strong> — Claude &amp; Claude Code (101, in Action)</div>
+        <div class="cert-item"><strong>Anthropic</strong> — Claude Cowork &amp; Agent Skills</div>
+      </div>
+      <div class="meta-card">
+        <h3>Other</h3>
+        <div class="lang-row">
+          <span class="lang">Driving Licence</span>
+          <span class="level">Category B</span>
+        </div>
+        <div class="lang-row">
+          <span class="lang">Interests</span>
+          <span class="level">Cycling · Skiing · Travel · Audiobooks</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-links">
+      <a href="mailto:alex5.frewein@gmail.com">alex5.frewein@gmail.com</a>
+      <a href="https://linkedin.com/in/alexander-frewein" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/pitfalls" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <p>Alexander Frewein · Graz, Austria · EU citizen · Open to relocation to the Netherlands</p>
+  </div>
 </footer>
-<!-- ========================= END COPEPEN CODE ========================= -->
-
-
 
 </body>
 </html>
